@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
         String content = new String(Files.readAllBytes(Paths.get("harry.txt")));
 
         // clean the words from a punctuation signs and spaces
-        content = content.toLowerCase(Locale.ROOT).replaceAll("[^A-Za-z ]", "");
+        content = content.toLowerCase(Locale.ROOT).replaceAll("[^A-Za-z]", " ");
 
         // split the novel into an array of words
         String[] words = content.split(" +");
@@ -33,9 +34,55 @@ public class Main {
         Arrays.sort(uniqueAsArray);
 
 
+
+
+        /* Laboratory work No. 1 */
+        // find the longest word in the above text
+        String longestWord = "";
+        for (int i = 0; i < uniqueAsArray.length; i++){
+           if (uniqueAsArray[i].length() >= longestWord.length()) {
+               longestWord = uniqueAsArray[i];
+           }
+        }
+        System.out.println("The longest word is " + longestWord.toUpperCase(Locale.ROOT));
+
+        // count the LINES where the word "Harry" is met.
+        int wordsHarryCounts = 0;
+        for (int i =0; i < words.length; i++){
+            if (words[i].equalsIgnoreCase("Harry")) {
+                wordsHarryCounts++;
+            }
+            if(!uniqueAsString.contains(words[i])){
+                uniqueAsString += words[i] + " ";
+            }
+        }
+        System.out.println("The word 'Harry' is met " + wordsHarryCounts);
+
+        // take the array of distinct words from Harry Potter
         for (int i = 0; i < uniqueAsArray.length; i++){
             System.out.println(uniqueAsArray[i]);
         }
+
+        // how many distinct words begin from the letter "C"
+        int distinctWordC = 0;
+        for (String st : uniqueAsArray){
+            if (st.startsWith("c")){
+                distinctWordC++;
+            }
+        }
+        System.out.println(distinctWordC + " begin from the letter 'C'");
+
+        // create an array of hashes
+        HashSet<?> [] gryffindorInfo = new HashSet<?>[2];
+        ((HashSet<String>)gryffindorInfo[0]).add("Gryffindor");
+        ((HashSet<String>)gryffindorInfo[1]).add("Godric Gryffindor");
+
+        // count the intersections of hashes
+        HashSet<String> facultiesName = new HashSet<String>();
+        for (int i =0; i<gryffindorInfo.length; i++) {
+            gryffindorInfo[i].retainAll(gryffindorInfo[i+1]);
+        }
+        System.out.println(facultiesName);
 
     }
 }
