@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Locale;
+
 
 public class Main {
 
@@ -73,16 +73,15 @@ public class Main {
         System.out.println(distinctWordC + " begin from the letter 'C'");
 
         // create an array of hashes
-        HashSet<?> [] gryffindorInfo = new HashSet<?>[2];
-        ((HashSet<String>)gryffindorInfo[0]).add("Gryffindor");
-        ((HashSet<String>)gryffindorInfo[1]).add("Godric Gryffindor");
+        Faculties [] faculty = new Faculties[4];
+        faculty[0] = new Faculties("Gryffindor");
+        faculty[1] = new Faculties("Hufflepuff");
+        faculty[2] = new Faculties("Ravenclaw");
+        faculty[3] = new Faculties("Slytherin");
 
-        // count the intersections of hashes
-        HashSet<String> facultiesName = new HashSet<String>();
-        for (int i =0; i<gryffindorInfo.length; i++) {
-            gryffindorInfo[i].retainAll(gryffindorInfo[i+1]);
+        for (Faculties faculties : faculty) {
+            System.out.println(faculties.getFacultiesName());
         }
-        System.out.println(facultiesName);
 
     }
 }
