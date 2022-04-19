@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Objects;
 
 
 public class Main {
@@ -36,7 +35,6 @@ public class Main {
 
 
 
-
         /* Laboratory work No. 1 */
         // find the longest word in the above text
         String longestWord = "";
@@ -61,7 +59,7 @@ public class Main {
 
         // take the array of distinct words from Harry Potter
         for (int i = 0; i < uniqueAsArray.length; i++){
-            System.out.println(uniqueAsArray[i]);
+            //System.out.print(uniqueAsArray[i]+" ");
         }
 
         // how many distinct words begin from the letter "C"
@@ -73,21 +71,25 @@ public class Main {
         }
         System.out.println(distinctWordC + " begin from the letter 'C'");
 
-        // create an array of hashes
-        Faculties [] faculty = new Faculties[4];
-        faculty[0] = new Faculties("Gryffindor");
-        faculty[1] = new Faculties("Hufflepuff");
-        faculty[2] = new Faculties("Ravenclaw");
-        faculty[3] = new Faculties("Slytherin");
+        String [] hashesTest = {"a", "b", "b", "a", "a", "c"};
+        int [] hashes = new int[hashesTest.length];
+        int intersectionsHashes = 0;
 
-        for (Faculties faculties : faculty) {
-            System.out.println(faculties.getFacultiesName());
+        for (int i = 0; i < hashesTest.length; i++) {
+            // create an array of hashes
+            hashes[i] = hashesTest[i].hashCode();
+            System.out.println(hashesTest[i].hashCode());
+
+            // count the UNIQUE intersections of hashes
+            for (int j = i+1; j < hashesTest.length; j++) {
+                if (hashesTest[i].hashCode() == hashesTest[j].hashCode()){
+                    intersectionsHashes++;
+                    break;
+                }
+            }
         }
+        System.out.printf("There is %d UNIQUE intersections of hashes", intersectionsHashes);
 
-        int hashCode1 = Objects.hash(faculty[0], faculty[1]);
-        System.out.println(hashCode1);
-        
-        // count the intersections of hashes.
 
     }
 }
