@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class Main {
@@ -82,6 +83,11 @@ public class Main {
         for (Faculties faculties : faculty) {
             System.out.println(faculties.getFacultiesName());
         }
+
+        int hashCode1 = Objects.hash(faculty[0], faculty[1]);
+        System.out.println(hashCode1);
+        
+        // count the intersections of hashes.
 
     }
 }
